@@ -23,5 +23,11 @@ jobs:
 
       - name: Print new page
 
-        run: echo "new, page!"    
+        run: echo "new, page!" 
+
+      - name: Print Good day
+
+        run: echo "Good, day!" 
+
+        
  
