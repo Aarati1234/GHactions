@@ -2,8 +2,8 @@ name: Hi World
  
 on:
 
-  #workflow_dispatch:
-  push:
+  workflow_dispatch:
+ 
  
 jobs:
 
