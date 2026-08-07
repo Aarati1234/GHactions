@@ -16,4 +16,12 @@ jobs:
       - name: Print Hello World
 
         run: echo "Hello, World!"
+  new:
+    runs-on: ubuntu-latest
+    
+    steps:
+
+      - name: Print new page
+
+        run: echo "new, page!"    
  
