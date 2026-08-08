@@ -3,6 +3,12 @@ name: Hi World
 on:
 
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+   
  
  
 jobs:
