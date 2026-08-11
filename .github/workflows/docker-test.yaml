@@ -1,0 +1,39 @@
+name: Check Docker on Self-Hosted Runner
+ 
+on:
+  workflow_dispatch:
+ 
+jobs:
+  check-docker:
+    runs-on: self-hosted
+ 
+    steps:
+      - name: Check Docker installation
+        run: |
+          echo "Checking Docker installation..."
+          if command -v docker >/dev/null 2>&1; then
+            echo "Docker is installed."
+            docker --version
+          else
+            echo "Docker is NOT installed."
+            exit 1
+          fi
+ 
+      - name: Check Docker service
+        run: |
+          echo "Checking Docker service..."
+          if docker info >/dev/null 2>&1; then
+            echo "Docker is running and accessible."
+          else
+            echo "Docker is installed but the Docker daemon is not accessible."
+            exit 1
+          fi
+ 
+      - name: Run Docker test container
+        run: |
+          echo "Running test container..."
+          docker run --rm hello-world
+ 
+      - name: Docker verification completed
+        run: |
+          echo "Docker verification completed successfully."
