@@ -1,0 +1,76 @@
+name: GitHub Actions Workflow Commands Demo
+ 
+on:
+
+  workflow_dispatch:
+ 
+jobs:
+
+  workflow-commands:
+
+    runs-on: ubuntu-latest
+ 
+    steps:
+
+      - name: Debug message
+
+        run: echo "::debug::This is a debug message"
+ 
+      - name: Notice message
+
+        run: echo "::notice::This is a notice message"
+ 
+      - name: Warning message
+
+        run: echo "::warning::This is a warning message"
+ 
+      - name: Error message
+
+        run: echo "::error::This is an error message"
+ 
+      - name: Group messages
+
+        run: |
+
+          echo "::group::System Information"
+
+          echo "Operating System:"
+
+          uname -a
+
+          echo "Current directory:"
+
+          pwd
+
+          echo "Current user:"
+
+          whoami
+
+          echo "::endgroup::"
+ 
+      - name: Set environment variable
+
+        run: |
+
+          echo "MY_VARIABLE=Hello-GitHub-Actions" >> "$GITHUB_ENV"
+ 
+      - name: Use environment variable
+
+        run: |
+
+          echo "MY_VARIABLE is: $MY_VARIABLE"
+ 
+      - name: Set output
+
+        id: demo
+
+        run: |
+
+          echo "message=Hello from step output" >> "$GITHUB_OUTPUT"
+ 
+      - name: Use step output
+
+        run: |
+
+          echo "Output received: ${{ steps.demo.outputs.message }}"
+ 
