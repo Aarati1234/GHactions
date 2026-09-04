@@ -1,0 +1,56 @@
+name: Upload and Download Artifact
+ 
+on:
+  workflow_dispatch:
+ 
+jobs:
+ 
+  # Job 1: Create and upload an artifact
+  build:
+    name: Create and Upload Artifact
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Create sample files
+        run: |
+          mkdir -p build
+          echo "Hello from GitHub Actions!" > build/message.txt
+          echo "This is a sample artifact." > build/info.txt
+ 
+      - name: List files
+        run: |
+          echo "Files to upload:"
+          ls -la build/
+ 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-build-artifact
+          path: build/
+ 
+ 
+  # Job 2: Download the artifact uploaded by Job 1
+  deploy:
+    name: Download Artifact
+    needs: build
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: my-build-artifact
+          path: downloaded-artifact/
+ 
+      - name: Display downloaded files
+        run: |
+          echo "Downloaded files:"
+          ls -la downloaded-artifact/
+ 
+      - name: Read artifact contents
+        run: |
+          echo "message.txt:"
+          cat downloaded-artifact/message.txt
+ 
+          echo "info.txt:"
+          cat downloaded-artifact/info.txt
