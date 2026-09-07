@@ -1,0 +1,85 @@
+name: Print GitHub Variables
+ 
+on:
+  workflow_dispatch:
+ 
+jobs:
+  show-variables:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Print repository information
+        run: |
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Repository (context): ${{ github.repository }}"
+          echo "Owner: $GITHUB_REPOSITORY_OWNER"
+          echo "Repository name: $GITHUB_REPOSITORY"
+          echo "Repository ID: $GITHUB_REPOSITORY_ID"
+          echo "Repository owner ID: $GITHUB_REPOSITORY_OWNER_ID"
+ 
+      - name: Print workflow information
+        run: |
+          echo "Workflow: $GITHUB_WORKFLOW"
+          echo "Workflow name: ${{ github.workflow }}"
+          echo "Workflow run ID: $GITHUB_RUN_ID"
+          echo "Workflow run number: $GITHUB_RUN_NUMBER"
+          echo "Workflow attempt: $GITHUB_RUN_ATTEMPT"
+          echo "Job: $GITHUB_JOB"
+ 
+      - name: Print Git information
+        run: |
+          echo "Branch/Ref: $GITHUB_REF"
+          echo "Ref name: $GITHUB_REF_NAME"
+          echo "Ref type: $GITHUB_REF_TYPE"
+          echo "Commit SHA: $GITHUB_SHA"
+          echo "Previous SHA: $GITHUB_EVENT_BEFORE"
+          echo "Head ref: $GITHUB_HEAD_REF"
+          echo "Base ref: $GITHUB_BASE_REF"
+ 
+      - name: Print actor information
+        run: |
+          echo "Actor: $GITHUB_ACTOR"
+          echo "Actor ID: $GITHUB_ACTOR_ID"
+          echo "Triggering actor: $GITHUB_TRIGGERING_ACTOR"
+ 
+      - name: Print runner information
+        run: |
+          echo "Runner OS: $RUNNER_OS"
+          echo "Runner architecture: $RUNNER_ARCH"
+          echo "Runner name: $RUNNER_NAME"
+          echo "Runner environment: $RUNNER_ENVIRONMENT"
+          echo "Workspace: $GITHUB_WORKSPACE"
+ 
+      - name: Print GitHub server information
+        run: |
+          echo "Server URL: $GITHUB_SERVER_URL"
+          echo "API URL: $GITHUB_API_URL"
+          echo "GraphQL URL: $GITHUB_GRAPHQL_URL"
+ 
+      - name: Print event information
+        run: |
+          echo "Event name: $GITHUB_EVENT_NAME"
+          echo "Event path: $GITHUB_EVENT_PATH"
+ 
+      - name: Print useful paths
+        run: |
+          echo "Actions: $GITHUB_ACTION_PATH"
+          echo "Environment file: $GITHUB_ENV"
+          echo "Output file: $GITHUB_OUTPUT"
+          echo "Path file: $GITHUB_PATH"
+          echo "Step summary: $GITHUB_STEP_SUMMARY"
+ 
+      - name: Print selected GitHub context
+        run: |
+          echo "github.repository = ${{ github.repository }}"
+          echo "github.repository_owner = ${{ github.repository_owner }}"
+          echo "github.ref = ${{ github.ref }}"
+          echo "github.ref_name = ${{ github.ref_name }}"
+          echo "github.sha = ${{ github.sha }}"
+          echo "github.actor = ${{ github.actor }}"
+          echo "github.event_name = ${{ github.event_name }}"
+          echo "github.workflow = ${{ github.workflow }}"
+          echo "github.job = ${{ github.job }}"
+          echo "github.run_id = ${{ github.run_id }}"
+          echo "github.run_number = ${{ github.run_number }}"
+          echo "github.run_attempt = ${{ github.run_attempt }}"
